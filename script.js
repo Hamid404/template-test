@@ -1,13 +1,28 @@
+const quoteContainer = document.getElementById('quote-container')
 const quoteText = document.getElementById('quote')
 const authorText = document.getElementById('author')
 const tweeterBtn = document.getElementById('twitter')
 const newQuoteBtn = document.getElementById('new-quote')
+const loader = document.getElementById('loader')
+
  
  let apiQuotes = [];
 
+ //Show Loading
+ function loading() {
+     loader.hidden = false;
+     quoteContainer.hidden = true; 
+ }
+
+ //Hide Loading
+ function complete() {
+     quoteContainer.hidden = false;
+     loader.hidden = true;
+ }
 
 //Show New Quote From apiQuotes
 function newQuote() {
+    loading();
     //Pick a Random Quote from apiQuotes array
     const quote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)];
     // console.log(quote);
@@ -25,11 +40,14 @@ function newQuote() {
       } else {
         quoteText.classList.remove('quote.text');
       }
+      // Set Qoute , Hide Loading
       quoteText.textContent = quote.text;
+      complete();
 }
 
 //Get Quotes From Api
  async function getQuotes() {
+    loading();
      const apiUrl = 'https://type.fit/api/quotes';
      
      try{
@@ -56,6 +74,9 @@ function newQuote() {
  // Event Listeners
  newQuoteBtn.addEventListener('click', newQuote);
  tweeterBtn.addEventListener('click', tweetQuote);
- getQuotes();
+ 
 // newQuote();
+ getQuotes();
+
+//loading();
 
