@@ -5,6 +5,7 @@ const newQuoteBtn = document.getElementById('new-quote')
  
  let apiQuotes = [];
 
+
 //Show New Quote From apiQuotes
 function newQuote() {
     //Pick a Random Quote from apiQuotes array
@@ -30,6 +31,7 @@ function newQuote() {
 //Get Quotes From Api
  async function getQuotes() {
      const apiUrl = 'https://type.fit/api/quotes';
+     
      try{
        const response = await fetch(apiUrl);
        apiQuotes = await response.json();
@@ -43,15 +45,17 @@ function newQuote() {
      }
  }
 
+ 
+
  // Tweeter Quote
  function tweetQuote() {
-     const tweeterUrl = `https://twitter.com/intent/tweet?text = ${quoteText.textContent} - ${authorText.textContent}`;
+     const tweeterUrl = `https://twitter.com/intent/tweet?text=${quoteText.textContent} - ${authorText.textContent}`;
      window.open(tweeterUrl, '_blank');
  }
 
  // Event Listeners
- tweeterBtn.addEventListener('click', tweetQuote);
  newQuoteBtn.addEventListener('click', newQuote);
+ tweeterBtn.addEventListener('click', tweetQuote);
  getQuotes();
 // newQuote();
 
