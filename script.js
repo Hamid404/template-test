@@ -14,7 +14,7 @@ const loader = document.getElementById('loader')
      quoteContainer.hidden = true; 
  }
 
- //Hide Loading
+ //Reomve Loading
  function complete() {
      quoteContainer.hidden = false;
      loader.hidden = true;
@@ -49,11 +49,12 @@ function newQuote() {
  async function getQuotes() {
     loading();
      const apiUrl = 'https://type.fit/api/quotes';
+     //const apiUrl = 'https://one-api.ir/danestani/?token={token}';
      
      try{
        const response = await fetch(apiUrl);
        apiQuotes = await response.json();
-       //console.log(apiQuotes);
+       console.log(apiQuotes);
        //Instead of console
        newQuote();
      }
